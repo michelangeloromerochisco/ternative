@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# macOS CI omitted — macos-13 (Intel x86_64) runners have unreliable availability
+# on the free tier. macOS ARM (Apple Silicon) is on the roadmap; CI will be added
+# when the ARM-native code path ships. Linux and Windows cover the primary targets.
+
 jobs:
   build-linux:
     name: Linux (GCC, CPU-only)
@@ -40,21 +44,3 @@ jobs:
       - name: Verify binary
         run: .\build\Release\ternative.exe --help
         continue-on-error: true
-
-  build-macos:
-    name: macOS Intel (Clang, CPU-only)
-    runs-on: macos-13
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: brew install libomp
-
-      - name: Configure
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF -DTERNATIVE_BUILD_TESTS=OFF
-
-      - name: Build
-        run: cmake --build build --parallel $(sysctl -n hw.logicalcpu)
-
-      - name: Verify binary
-        run: ./build/ternative --help || true
