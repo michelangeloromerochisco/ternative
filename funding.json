@@ -1,0 +1,75 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "individual",
+    "role": "owner",
+    "name": "Michelangelo Romero Chisco",
+    "email": "synaptic.technology.lab@gmail.com",
+    "description": "Independent developer building open-source ternary LLM infrastructure in Bogotá, Colombia.",
+    "webpageUrl": {
+      "url": "https://github.com/michelangeloromerochisco",
+      "wellKnown": ""
+    }
+  },
+  "projects": [
+    {
+      "guid": "ternative",
+      "name": "ternative",
+      "description": "Open-source C++/CUDA inference engine for ternary-weight LLMs with runtime LoRA. Solves the ternary merge problem: LoRA deltas (~1e-5 magnitude) are silently erased when merged into ternary weights (~1.2 scale) and re-quantized. ternative keeps the adapter separate, applies it at full F32 precision at load time, and serves via OpenAI-compatible HTTP. Enables the entire class of LoRA-aligned BitNet models to be served correctly — something llama.cpp and bitnet.cpp cannot do.",
+      "webpageUrl": {
+        "url": "https://github.com/michelangeloromerochisco/ternative",
+        "wellKnown": ""
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/michelangeloromerochisco/ternative",
+        "wellKnown": ""
+      },
+      "licenses": ["spdx:Apache-2.0"],
+      "tags": [
+        "llm",
+        "inference",
+        "ternary",
+        "bitnet",
+        "cuda",
+        "cpp",
+        "lora",
+        "gguf",
+        "openai-compatible",
+        "consumer-hardware"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "floss-fund",
+        "type": "other",
+        "address": "synaptic.technology.lab@gmail.com",
+        "description": "FLOSS/fund grant"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "terse-mini-training",
+        "status": "active",
+        "name": "Terse Mini pre-training compute",
+        "description": "Fund GPU/TPU compute for Terse Mini (1.5B active / 4.5B total ternary sparse transformer) pre-training on 200B tokens. All weights and training code published openly under Apache 2.0.",
+        "amount": 9000,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["floss-fund"]
+      },
+      {
+        "guid": "ternative-v2-development",
+        "status": "active",
+        "name": "ternative v2.0 — MoE, KDA, vision support",
+        "description": "Extend ternative to serve Terse models: MoE expert dispatch, KDA (Kimi Delta Attention) kernels, MLA with KV absorption, recurrent depth, Apple Metal backend. This makes ternative the reference inference engine for the next generation of ternary models.",
+        "amount": 15000,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["floss-fund"]
+      }
+    ],
+    "history": null
+  }
+}
