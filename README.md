@@ -166,15 +166,15 @@ Forward pass (fully GPU-resident per token):
 ternative/
 ├── cuda/               CUDA kernels (GEMV, attention, RoPE, KV-cache, INT8)
 ├── include/ternative/  Public C++ headers
+├── scripts/            Build helpers (build.sh, build.ps1, build.bat)
 ├── src/                Engine implementation
 │   ├── model.cpp       Forward pass, GPU offload, LoRA merge, cache
 │   ├── server.cpp      OpenAI-compatible HTTP server
 │   ├── tokenizer.cpp   BPE tokenizer with GGUF vocab
 │   └── ...
-├── tests/              Test suite
 ├── CMakeLists.txt      Build configuration
 ├── NOTICE              Third-party copyright notices
-└── build_cuda.bat      One-command GPU build (Windows)
+└── run_server.bat      Quick server launcher (Windows)
 ```
 
 ---
