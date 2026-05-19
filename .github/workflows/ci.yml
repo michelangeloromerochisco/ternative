@@ -42,8 +42,8 @@ jobs:
         continue-on-error: true
 
   build-macos:
-    name: macOS (Clang, CPU-only)
-    runs-on: macos-14
+    name: macOS Intel (Clang, CPU-only)
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
 
