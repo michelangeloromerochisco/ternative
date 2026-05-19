@@ -14,10 +14,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get install -y cmake libopenblas-dev
+        run: sudo apt-get install -y cmake libopenblas-dev libgomp1
 
       - name: Configure
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF -DTERNATIVE_BUILD_TESTS=OFF -DCMAKE_CXX_FLAGS="-fopenmp"
 
       - name: Build
         run: cmake --build build --parallel $(nproc)
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Configure
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF -DTERNATIVE_BUILD_TESTS=OFF
 
       - name: Build
         run: cmake --build build --config Release --parallel
@@ -47,8 +47,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: brew install libomp
+
       - name: Configure
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF -DTERNATIVE_BUILD_TESTS=OFF -DCMAKE_CXX_FLAGS="-Xpreprocessor -fopenmp"
 
       - name: Build
         run: cmake --build build --parallel $(sysctl -n hw.logicalcpu)
