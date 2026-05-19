@@ -1,7 +1,8 @@
-# ternative
+﻿# ternative
 
 **Inference engine for ternary-weight LLMs with runtime LoRA** — the llama.cpp of BitNet models.
 
+[![CI](https://github.com/michelangeloromerochisco/ternative/actions/workflows/ci.yml/badge.svg)](https://github.com/michelangeloromerochisco/ternative/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](README.md)
 [![CUDA](https://img.shields.io/badge/CUDA-12.x-green)](README.md)
