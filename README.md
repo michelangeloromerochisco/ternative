@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/michelangeloromerochisco/ternative/actions/workflows/ci.yml/badge.svg)](https://github.com/michelangeloromerochisco/ternative/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](README.md)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey)](README.md)
 [![CUDA](https://img.shields.io/badge/CUDA-12.x-green)](README.md)
 [![C++](https://img.shields.io/badge/C++-17-blue)](CMakeLists.txt)
 
@@ -43,13 +43,15 @@ Benchmarked with [Orchid 1.0](https://github.com/michelangeloromerochisco/orchid
 
 ### Requirements
 
-- **CPU-only**: CMake 3.18+, C++17 compiler (MSVC 2022 / GCC 11+ / Clang 14+), 8 GB RAM
+- **CPU-only**: CMake 3.18+, C++17 compiler (MSVC 2022 / GCC 11+), 8 GB RAM
 - **GPU**: additionally CUDA 12.x and the CUDA toolkit
+
+> **macOS not supported.** The engine uses x86/x64 AVX2 intrinsics throughout. macOS ARM (Apple Silicon) requires a separate ARM-native backend — tracked in the roadmap below. macOS Intel may build but is not tested.
 
 ### Build
 
 ```bash
-# Linux / macOS
+# Linux
 git clone --depth 1 https://github.com/michelangeloromerochisco/ternative
 cd ternative
 cmake -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --parallel
@@ -69,12 +71,12 @@ cmake --build build --parallel
 ### Generate text
 
 ```bash
-# Download Orchid 1.0 weights
+# Download Orchid 1.0 weights (Linux)
 huggingface-cli download MicheRomChis/orchid-1.0 \
   ggml-model-i2_s.gguf dpo_aligned-lora.gguf \
   --local-dir ./models
 
-# Run
+# Run (Linux)
 ./build/ternative \
   --model ./models/ggml-model-i2_s.gguf \
   --lora  ./models/dpo_aligned-lora.gguf \
