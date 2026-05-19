@@ -90,10 +90,34 @@ set(HEADERS
     include/ternative/request.h
 )
 
+# OpenMP — cmake-native discovery handles compile + link flags on all platforms
+if(APPLE)
+    # Homebrew libomp: help cmake find it before calling find_package
+    find_program(BREW brew)
+    if(BREW)
+        execute_process(COMMAND ${BREW} --prefix libomp
+            OUTPUT_VARIABLE LIBOMP_PREFIX OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+        if(LIBOMP_PREFIX)
+            set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp -I${LIBOMP_PREFIX}/include")
+            set(OpenMP_CXX_LIB_NAMES "omp")
+            set(OpenMP_omp_LIBRARY "${LIBOMP_PREFIX}/lib/libomp.dylib")
+        endif()
+    endif()
+endif()
+find_package(OpenMP)
+
 # Main executable
 add_executable(ternative src/main.cpp ${SOURCES} ${HEADERS})
 target_include_directories(ternative PRIVATE include)
 target_link_libraries(ternative PRIVATE nlohmann_json::nlohmann_json)
+
+# OpenMP link
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(ternative PRIVATE OpenMP::OpenMP_CXX)
+    message(STATUS "OpenMP: enabled")
+else()
+    message(STATUS "OpenMP: not found — serial fallback")
+endif()
 
 # Platform
 if(TERNATIVE_OPENBLAS_FOUND)
@@ -105,12 +129,10 @@ endif()
 if(WIN32)
     target_compile_definitions(ternative PRIVATE NOMINMAX _CRT_SECURE_NO_WARNINGS)
     target_link_libraries(ternative PRIVATE ws2_32)
-    # MSVC-specific flags — CXX only, never passed to nvcc
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         target_compile_options(ternative PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/arch:AVX2>)
     endif()
-    # /openmp: parallelize loops; /fp:fast: FMA fusion; /O2: full opt
-    target_compile_options(ternative PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/openmp /fp:fast /O2>)
+    target_compile_options(ternative PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/fp:fast /O2>)
 endif()
 
 # CUDA
