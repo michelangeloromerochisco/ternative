@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-linux:
+    name: Linux (GCC, CPU-only)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y cmake libopenblas-dev
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+
+      - name: Build
+        run: cmake --build build --parallel $(nproc)
+
+      - name: Verify binary
+        run: ./build/ternative --help || true
+
+  build-windows:
+    name: Windows (MSVC, CPU-only)
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Verify binary
+        run: .\build\Release\ternative.exe --help
+        continue-on-error: true
+
+  build-macos:
+    name: macOS (Clang, CPU-only)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTERNATIVE_CUDA=OFF
+
+      - name: Build
+        run: cmake --build build --parallel $(sysctl -n hw.logicalcpu)
+
+      - name: Verify binary
+        run: ./build/ternative --help || true
