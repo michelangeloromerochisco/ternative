@@ -7,7 +7,7 @@ assignees: ''
 ---
 
 **Platform**
-- OS: [e.g. Windows 11, Ubuntu 22.04, macOS 14]
+- OS: [e.g. Windows 11, Ubuntu 22.04] — macOS not currently supported
 - GPU: [e.g. RTX 3050 4GB, or CPU-only]
 - CUDA version: [if GPU build]
 - Compiler: [MSVC 2022 / GCC 12 / Clang 17]
