@@ -192,7 +192,6 @@ ternative/
 - [x] INT8 auto-quantization (symmetric per-tensor, overflow handling)
 - [x] Batched GEMV prefill kernel (~50× faster prompt processing)
 - [x] GPU KV-cache (1024-token capacity)
-- [ ] Flash Attention for long contexts
 - [ ] cuBLAS GEMM for large-batch prefill
 - [ ] Metal backend (Apple Silicon)
 - [ ] Terse model support (MoE, KDA, MLA, recurrent depth)
@@ -217,14 +216,12 @@ See [NOTICE](NOTICE) for full copyright texts.
 If you use ternative in your research, please cite:
 
 ​```bibtex
-@misc{romerochisco2026orchid,
-  title     = {Orchid 1.0: A Reproducible Recipe for Aligned Ternary-Weight Language Models on Consumer Hardware},
+@software{romerochisco2026ternative,
+  title     = {ternative: Inference Engine for Ternary-Weight LLMs with Runtime LoRA},
   author    = {Romero Chisco, Michelangelo},
   year      = {2026},
-  doi       = {10.5281/zenodo.20452163},
-  url       = {https://doi.org/10.5281/zenodo.20452163},
-  publisher = {Zenodo},
-  note      = {Preprint}
+  url       = {https://github.com/michelangeloromerochisco/ternative},
+  license   = {Apache-2.0}
 }
 ​```
 
