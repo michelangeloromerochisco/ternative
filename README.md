@@ -7,6 +7,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey)](README.md)
 [![CUDA](https://img.shields.io/badge/CUDA-12.x-green)](README.md)
 [![C++](https://img.shields.io/badge/C++-17-blue)](CMakeLists.txt)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20452163.svg)](https://doi.org/10.5281/zenodo.20452163)
 
 Loads a BitNet I2_S base GGUF + a separate LoRA adapter GGUF, merges them at full F32 precision, and serves the result via an OpenAI-compatible HTTP server — on GPU or CPU-only hardware.
 
@@ -211,6 +212,21 @@ ternative/
 See [NOTICE](NOTICE) for full copyright texts.
 
 ---
+## Citation
+
+If you use ternative in your research, please cite:
+
+​```bibtex
+@misc{romerochisco2026orchid,
+  title     = {Orchid 1.0: A Reproducible Recipe for Aligned Ternary-Weight Language Models on Consumer Hardware},
+  author    = {Romero Chisco, Michelangelo},
+  year      = {2026},
+  doi       = {10.5281/zenodo.20452163},
+  url       = {https://doi.org/10.5281/zenodo.20452163},
+  publisher = {Zenodo},
+  note      = {Preprint}
+}
+​```
 
 ## License
 
