@@ -211,6 +211,7 @@ ternative/
 See [NOTICE](NOTICE) for full copyright texts.
 
 ---
+
 ## Citation
 
 If you use ternative in your research, please cite:
@@ -224,6 +225,7 @@ If you use ternative in your research, please cite:
   license   = {Apache-2.0}
 }
 ​```
+---
 
 ## License
 
