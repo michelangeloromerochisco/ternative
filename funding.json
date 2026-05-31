@@ -4,7 +4,7 @@
     "type": "individual",
     "role": "owner",
     "name": "Michelangelo Romero Chisco",
-    "email": "synaptic.technology.lab@gmail.com",
+    "email": "michelangeloromerochisco@gmail.com",
     "description": "Independent developer building open-source ternary LLM infrastructure in Bogotá, Colombia.",
     "webpageUrl": {
       "url": "https://github.com/michelangeloromerochisco",
@@ -44,7 +44,7 @@
       {
         "guid": "floss-fund",
         "type": "other",
-        "address": "synaptic.technology.lab@gmail.com",
+        "address": "michelangeloromerochisco@gmail.com",
         "description": "FLOSS/fund grant"
       }
     ],
